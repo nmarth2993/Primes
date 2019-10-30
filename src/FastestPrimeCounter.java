@@ -6,35 +6,40 @@ public class FastestPrimeCounter {
 		if (n <= 1) {
 			return false;
 		}
-		for (int i = 0; i < alreadyFound.length && alreadyFound[i] > Math.sqrt(n); i++) {
+		if (n == 2) {
+			return true;
+		}
+		for (int i = 0; i < alreadyFound.length && alreadyFound[i] <= Math.sqrt(n); i++) {
+			System.out.println(alreadyFound[i]);
 			if (n % alreadyFound[i] == 0) {
 				return false;
 			}
 		}
-		addPrime(n);
 		numPrimes++;
+		addToArray(n);
 		return true;
 	}
 	
 	public int countPrimes(int limit) {
-		int primeCount = 0;
-		alreadyFound = new int[100];
-		for (int i = 0; i < limit; i++) {
+		int count = 0;
+		alreadyFound = new int[] {2};
+//		alreadyFound[0] = 2;
+		for (int i = 1; i < limit - 1; i++) {
 			if (isPrime(i)) {
-				primeCount++;
+				count++;
 			}
 		}
-		return primeCount;
+		return count;
 	}
 	
-	private void addPrime(int n) {
+	public void addToArray(int n) {
 		if (numPrimes >= alreadyFound.length) {
-			int[] temp = new int[alreadyFound.length * 2];
+			int[] result = new int[alreadyFound.length * 2];
 			for (int i = 0; i < alreadyFound.length; i++) {
-				temp[i] = alreadyFound[i];
+				result[i] = alreadyFound[i];
 			}
-			temp[numPrimes] = n;
-			alreadyFound = temp;
+//			System.arraycopy(alreadyFound, 0, result, 0, alreadyFound.length);
+			alreadyFound = result;
 		}
 		else {
 			alreadyFound[numPrimes] = n;
@@ -44,5 +49,8 @@ public class FastestPrimeCounter {
 	public static void main(String[] args) {
 		FastestPrimeCounter p = new FastestPrimeCounter();
 		System.out.println(p.countPrimes(100));
+		//XXX: This class is currently broken, but it's close
+//		for (int i = 0)
+		
 	}
 }
