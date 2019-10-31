@@ -1,5 +1,5 @@
 
-public class FirstPrimeCounter {
+public class FirstPrimeCounter implements PrimesFinder {
 	public boolean isPrime(int n) {
 		if (n <= 1) {
 			return false;
@@ -11,24 +11,23 @@ public class FirstPrimeCounter {
 		}
 		return true;
 	}
-	
+
 	public int countPrimes(int limit) {
 		int primes = 0;
-		
+
 		for (int i = 0; i < limit; i++) {
 			if (isPrime(i)) {
-				System.out.println(i);
 				primes++;
 			}
 		}
 		return primes;
 	}
-	
+
 	public static void main(String[] args) {
 		FirstPrimeCounter p = new FirstPrimeCounter();
 //		
 //		System.out.println(p.isPrime(7));
-		
+
 		System.out.println(p.countPrimes(100));
 	}
 }
