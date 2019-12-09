@@ -2,7 +2,8 @@ import com.wolfram.alpha.*;
 
 public class CustomAlgorithm {
 
-	final static String appid = "R6K68Q-2TEQ4JLPVK";
+	final static String appid = "API-KEY";
+	//don't worry, the API key that was here previously has been deactivated
 	final static int MAGIC_NUMBER = 6300000;
 
 	private int[] alreadyFound;
